@@ -27,4 +27,8 @@ public interface WebConfig extends Config {
     @Key("baseUrl")
     @DefaultValue("https://befree.ru/")
     String getBaseUrl();
+
+    @Key("headless")
+    @DefaultValue("false")
+    boolean isHeadless();
 }

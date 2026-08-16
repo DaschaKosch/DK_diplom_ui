@@ -2,10 +2,10 @@ plugins {
     id 'java'
     id 'io.qameta.allure' version '2.11.2'  // или актуальная версия
 }
-java {
+/*java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
-}
+}*/
 allure {
     adapter {
         aspectjWeaver.set(true)
