@@ -2,6 +2,10 @@ plugins {
     id 'java'
     id 'io.qameta.allure' version '2.11.2'  // или актуальная версия
 }
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 allure {
     adapter {
         aspectjWeaver.set(true)
@@ -48,6 +52,7 @@ test {
     jvmArgs = [
             "-javaagent:${configurations.testRuntimeClasspath.find { it.name.contains('aspectjweaver') }.absolutePath}"
     ]
+    jvmArgs += ['-Dfile.encoding=UTF-8']
     testLogging {
         events "passed", "skipped", "failed"
         showStandardStreams = true
