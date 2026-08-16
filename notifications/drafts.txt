@@ -1,0 +1,10 @@
+8922236618:AAGde-Yih0KV3ACdx7BoA90wpFm2fnZPlmc
+
+https://api.telegram.org/bot8922236618:AAGde-Yih0KV3ACdx7BoA90wpFm2fnZPlmc/getUpdates
+
+-1003782646813
+
+java "-DconfigFile=notification/config.json" -jar ./notification/allure-notifications-4.11.0.jar
+
+
+

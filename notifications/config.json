@@ -1,0 +1,16 @@
+{
+  "base": {
+    "project": "DK_diplom_ui",
+    "environment": "some env",
+    "comment": "comment here @DarjaKoshman",
+    "reportLink": "",
+    "language": "en",
+    "allureFolder": "build/allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "8922236618:AAGde-Yih0KV3ACdx7BoA90wpFm2fnZPlmc",
+    "chat": "-1003782646813",
+    "replyTo": ""
+  }
+}
