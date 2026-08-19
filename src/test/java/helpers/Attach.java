@@ -6,6 +6,8 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -36,23 +38,39 @@ public class Attach {
                     String.join("\n", Selenide.getWebDriverLogs(BROWSER)) //логи браузера консоль вкладка
             );
         }
+    @Attachment(value = "Video", type = "video/mp4", fileExtension = ".mp4")
+    public static byte[] addVideo() {
 
-        @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
-        public static String addVideo() {
-            return "<html><body><video width='100%' height='100%' controls autoplay><source src='"
-                    + getVideoUrl()
-                    + "' type='video/mp4'></video></body></html>";
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
 
-        public static URL getVideoUrl() {
-            String videoUrl = "https://selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
-            try {
-                return new URL(videoUrl);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+
+        String videoUrl = "https://user1:1234@selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
+
+        try {
+            URL url = new URL(videoUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+
+            if (connection.getResponseCode() == 200) {
+                try (InputStream inputStream = connection.getInputStream()) {
+                    return inputStream.readAllBytes();
+                }
+            } else {
+                System.err.println("Не удалось получить видео. Код ответа: " + connection.getResponseCode());
             }
-            return null;
+        } catch (Exception e) {
+            System.err.println("Ошибка при прикреплении видео: " + e.getMessage());
         }
+
+        return new byte[0];
     }
+}
+
+
 
 

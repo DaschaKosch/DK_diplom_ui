@@ -31,9 +31,11 @@ public class TestBase {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             Attach.browserConsoleLogs();
-            Attach.addVideo();
-        } finally {
             closeWebDriver();
+            Attach.addVideo();
+
+        } catch (Exception e) {
+            System.err.println("Ошибка при сборе аттачментов: " + e.getMessage());
         }
     }
 }
