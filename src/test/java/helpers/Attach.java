@@ -38,36 +38,27 @@ public class Attach {
                     String.join("\n", Selenide.getWebDriverLogs(BROWSER)) //логи браузера консоль вкладка
             );
         }
-    @Attachment(value = "Video", type = "video/mp4", fileExtension = ".mp4")
-    public static byte[] addVideo() {
+    @Attachment(value = "Video", type = "text/html", fileExtension = ".html")
+    public static String addVideo() {
+        String sessionId = Selenide.sessionId() != null
+                ? Selenide.sessionId().toString()
+                : null;
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        // Если без сессии (локальный запуск без Selenoid) — не добавляем битую ссылку
+        if (sessionId == null) {
+            return "<html><body><p>📹 Video not available (local run without Selenoid)</p></body></html>";
         }
 
+        // Добавляем user1:1234@ для авторизации в Jenkins, иначе будет ошибка 401
+        String videoBaseUrl = "https://user1:1234@selenoid.autotests.cloud/video";
 
-        String videoUrl = "https://user1:1234@selenoid.autotests.cloud/video/" + sessionId() + ".mp4";
-
-        try {
-            URL url = new URL(videoUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-
-
-            if (connection.getResponseCode() == 200) {
-                try (InputStream inputStream = connection.getInputStream()) {
-                    return inputStream.readAllBytes();
-                }
-            } else {
-                System.err.println("Не удалось получить видео. Код ответа: " + connection.getResponseCode());
-            }
-        } catch (Exception e) {
-            System.err.println("Ошибка при прикреплении видео: " + e.getMessage());
-        }
-
-        return new byte[0];
+        return "<html><body>" +
+                "<h4>🎥 Test Execution Video</h4>" +
+                "<video width='100%' height='100%' controls autoplay>" +
+                "<source src='" + videoBaseUrl + "/" + sessionId + ".mp4' type='video/mp4'>" +
+                "Your browser does not support the video tag. " +
+                "<a href='" + videoBaseUrl + "/" + sessionId + ".mp4' target='_blank'>Download video</a>" +
+                "</video></body></html>";
     }
 }
 

@@ -3,6 +3,8 @@ package tests.utils;
 import com.codeborne.selenide.Configuration;
 import org.aeonbits.owner.ConfigFactory;
 import tests.config.WebConfig;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +29,19 @@ public class SelenideSetup {
 
         if (config.isHeadless()) {
             Map<String, Object> chromeOptions = new HashMap<>();
-            chromeOptions.put("args", List.of("--no-sandbox", "--disable-dev-shm-usage"));
+            List<String> args = new ArrayList<>();
+
+            // Базовые флаги для Docker/Selenoid
+            args.add("--no-sandbox");
+            args.add("--disable-dev-shm-usage");
+
+            // Флаги, которые лечат черный экран при записи видео в headless
+            args.add("--disable-gpu");
+            args.add("--window-size=1920,1080"); // ВАЖНО: именно запятая, а не 'x'
+            args.add("--force-color-profile=srgb"); // Помогает корректному рендерингу
+            args.add("--disable-software-rasterizer");
+
+            chromeOptions.put("args", args);
             Configuration.browserCapabilities.setCapability("goog:chromeOptions", chromeOptions);
         }
 

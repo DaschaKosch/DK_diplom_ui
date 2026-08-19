@@ -31,4 +31,12 @@ public interface WebConfig extends Config {
     @Key("headless")
     @DefaultValue("false")
     boolean isHeadless();
+
+    @Key("enableVideo")
+    @DefaultValue("true")
+    boolean getEnableVideo();
+
+    @Key("videoBaseUrl")
+    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/video/<sessionId>.mp4")
+    String getVideoBaseUrl();
 }
