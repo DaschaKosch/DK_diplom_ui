@@ -103,7 +103,10 @@ clean test -Denv=ci
 ## <img alt="Allure" height="25" src="images/logo/Jira.svg" width="25"/></a> Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-689">Jira</a>
 
 <p align="center">  
-<img title="Jira" src="images/screen/Jira.png" width="">  
+<img title="Jira" src="images/screen/Jira1.png" width="">  
+</p>
+<p align="center">  
+<img title="Jira" src="images/screen/Jira2.png" width="">  
 </p>
 
 ____
