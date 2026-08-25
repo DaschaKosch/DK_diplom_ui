@@ -4,15 +4,12 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.CartPage;
-import pages.MainPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Owner("Darya Koshman")
 @Epic("UI Тестирование Befree")
 @Feature("Корзина")
 public class CartTests extends TestBase {
-
-    private final MainPage mainPage = new MainPage();
 
     @Test
     @Severity(SeverityLevel.NORMAL)

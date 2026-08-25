@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byAttribute;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class ProductPage {
 
@@ -40,7 +41,7 @@ public class ProductPage {
         @Step("Перейти в корзину")
         public CartPage goToCart() {
             $("[data-testid='header-cart-link']").click();
-            return new CartPage();
+            return page(CartPage.class);
         }
     }
 

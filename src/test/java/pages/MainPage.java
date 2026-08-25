@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static testdata.TestData.WOMEN_CATALOG;
+import static com.codeborne.selenide.Selenide.page;
 
 public class MainPage {
 
@@ -47,7 +48,7 @@ public class MainPage {
     @Step("Перейти в раздел 'Женское'")
     public CatalogPage goToWomenSection() {
         com.codeborne.selenide.Selenide.open(WOMEN_CATALOG);
-        return new CatalogPage();
+        return page(CatalogPage.class);
     }
 
 
@@ -61,7 +62,7 @@ public class MainPage {
                 "arguments[0].click();",
                 $(".digi-search-form__submit")
         );
-        return new CatalogPage();
+        return page(CatalogPage.class);
     }
 
     @Step("Открыть корзину из хэдера")
@@ -71,7 +72,7 @@ public class MainPage {
                 driver -> driver.getCurrentUrl().toLowerCase().contains("/cart")
         );
 
-        return new CartPage();
+        return page(CartPage.class);
     }
 }
 

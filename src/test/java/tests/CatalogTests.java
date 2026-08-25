@@ -4,7 +4,6 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.CatalogPage;
-import pages.MainPage;
 import pages.ProductPage;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,8 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
     @Epic("UI Тестирование Befree")
     @Feature("Навигация в каталоге")
     public class CatalogTests extends TestBase {
-
-        private final MainPage mainPage = new MainPage();
 
         @Test
         @Severity(SeverityLevel.CRITICAL)

@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static testdata.TestData.EMPTY_CART_MESSAGE;
 
+
 public class CartPage {
 
     private final ElementsCollection cartItems = $$("[class*='sc-2d79c7ce'] a[href*='/product/']");

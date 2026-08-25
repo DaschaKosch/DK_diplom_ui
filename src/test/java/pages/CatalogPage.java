@@ -6,6 +6,7 @@ import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.page;
 
 public class CatalogPage {
     private final ElementsCollection productCards = $$("a[href*='/product/']");
@@ -37,7 +38,7 @@ public class CatalogPage {
     @Step("Открыть первый товар из каталога")
     public ProductPage openFirstProduct() {
         productCards.first().shouldBe(visible).click(ClickOptions.usingJavaScript());
-        return new ProductPage();
+        return page(ProductPage.class);
     }
 
     @Step("Получить URL текущей страницы")

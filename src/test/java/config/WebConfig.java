@@ -1,10 +1,9 @@
-package tests.config;
+package config;
 
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        // подстановка local или remote
         "classpath:${env}.properties",
         "classpath:local.properties"
 })
