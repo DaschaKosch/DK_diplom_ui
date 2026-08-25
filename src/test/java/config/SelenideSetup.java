@@ -13,7 +13,7 @@ public class SelenideSetup {
     public static void applyConfig() {
         String env = System.getProperty("env", "local");
         WebConfig config = ConfigFactory.create(WebConfig.class, System.getProperties());
-        Configuration.browser = config.getBrowser();
+        Configuration.browser = config.getBrowser().toLowerCase();
 
         if (config.getBrowserVersion() != null && !config.getBrowserVersion().isEmpty()) {
             Configuration.browserVersion = config.getBrowserVersion();
@@ -50,10 +50,16 @@ public class SelenideSetup {
 
         String remoteUrl = config.getRemoteUrl();
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
-            String login = System.getProperty("remoteBrowserUrlLogin", "user1");
-            String password = System.getProperty("remoteBrowserUrlPassword", "1234");
-            String host = remoteUrl.replaceAll("^https?://", "");
-            Configuration.remote = "https://" + login + ":" + password + "@" + host;
+
+            if (remoteUrl.contains("@")) {
+                Configuration.remote = remoteUrl;
+            } else {
+                String login = System.getProperty("remoteBrowserUrlLogin", "user1");
+                String password = System.getProperty("remoteBrowserUrlPassword", "1234");
+                String host = remoteUrl.replaceAll("^https?://", "");
+                Configuration.remote = "https://" + login + ":" + password + "@" + host;
+            }
+
         } else {
             Configuration.remote = null;
 
