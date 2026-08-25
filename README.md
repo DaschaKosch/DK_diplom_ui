@@ -61,7 +61,8 @@ clean test -Denv=ci
 ```
 
 
-## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a>  <a name="Allure"></a>Allure Report	</a>
+## <img alt="Allure" height="25" src="images/logo/Allure.svg" width="25"/></a>  <a href="https://jenkins.qa.guru/job/41_DK_UI/23/allure/" target="_blank" style="color: #1BA8A8; text-decoration: none;">Allure Report ↗</a>
+
 
 
 ## Основная страница отчёта
@@ -86,7 +87,7 @@ clean test -Denv=ci
 </p>
 
 
-## <img alt="Allure_TO" height="25" src="images/logo/Allure_TO.svg" width="25"/> </a>Интеграция с Allure TestOps</a>
+## <img alt="Allure_TO" height="25" src="images/logo/Allure_TO.svg" width="25"/> <a href="https://allure.qa.guru/launch/55895" target="_blank" style="color: #1BA8A8; text-decoration: none;">Интеграция с Allure TestOps ↗</a>
 
 ## Allure TestOps Запуски
 
